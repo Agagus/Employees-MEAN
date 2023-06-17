@@ -1,0 +1,33 @@
+###
+
+GET http://localhost:4100/api/employees
+
+###
+
+GET http://localhost:4100/api/employees/648c4f42a5aa4c24815b22bf
+
+###
+
+POST http://localhost:4100/api/employees
+Content-Type: application/json
+
+{
+ "name": "Mateo",
+ "position": "some position2",
+ "office": "some office2",
+ "salary": "2800"   
+}
+
+###
+
+PUT http://localhost:4100/api/employees/648c4f42a5aa4c24815b22bf
+Content-Type: application/json
+
+{
+    "salary": "4444"
+}
+
+###
+
+DELETE http://localhost:4100/api/employees/648c70df5edbf58aa14f55ea
+
