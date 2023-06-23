@@ -1,0 +1,71 @@
+<div class="grid md:grid-cols-2">
+    <div class="p-8">
+        <form #employeeForm="ngForm">
+            <h3 class="mb-6 text-center">Create a new employee</h3>
+            <input type="hidden" name="_id" [(ngModel)]="employeeService.selectedEmployee._id">
+            <div class="mb-6">
+                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                <input type="text" id="name" name="name"
+                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                    required [(ngModel)]="employeeService.selectedEmployee.name">
+            </div>
+            <div class="mb-6">
+                <label for="position"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Position</label>
+                <input type="text" id="position" name="position"
+                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                    required [(ngModel)]="employeeService.selectedEmployee.position">
+            </div>
+            <div class="mb-6">
+                <label for="office" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Office</label>
+                <input type="text" id="office" name="office"
+                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                    required [(ngModel)]="employeeService.selectedEmployee.office">
+            </div>
+            <div class="mb-6">
+                <label for="salary" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Salary</label>
+                <input type="number" id="salary" name="salary"
+                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                    required [(ngModel)]="employeeService.selectedEmployee.salary ">
+            </div>
+
+            <button (click)="addEmployee(employeeForm)"
+                class="mr-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register
+                new employee</button>
+            <button
+                class="text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                (click)="resetForm(employeeForm)">Clean</button>
+        </form>
+
+    </div>
+
+
+    <!-- AQUI LA TABLE -->
+    <div class="p-8">
+        <table class="w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Salary</th>
+                    <th>Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let employee of employeeService.employees">
+                    <td>{{ employee.name}}</td>
+                    <td>{{ employee.position}}</td>
+                    <td>{{ employee.office}}</td>
+                    <td>{{ employee.salary}}</td>
+                    <td>
+                        <button class="uppercase bg-green-500 p-2 mx-1 rounded-sm"
+                            (click)="updateEmployee(employee)">Edit</button>
+                        <button class="uppercase bg-red-500 p-2 mx-1 rounded-sm"
+                            (click)="deleteEmployee(employee._id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
